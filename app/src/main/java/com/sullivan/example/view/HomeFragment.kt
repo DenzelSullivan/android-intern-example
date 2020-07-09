@@ -5,12 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sullivan.example.R
+import com.sullivan.example.model.repository.FoodRepository
+import com.sullivan.example.model.service.FoodService
+import com.sullivan.example.model.service.RetrofitBuilder
 import com.sullivan.example.view.adapter.DataAdapter
+import com.sullivan.example.viewmodel.FoodViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.runBlocking
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +31,11 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment : Fragment() {
     private lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var foodRepository: FoodRepository
+    private lateinit var viewModel: FoodViewModel
+
+    private var retrofit: RetrofitBuilder = RetrofitBuilder
+
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -47,12 +59,14 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val dataList = mutableListOf("Denzel", "Daniel", "Jason")
+        foodRepository = FoodRepository(retrofit.foodService)
+        viewModel = FoodViewModel(foodRepository)
 
         layoutManager = LinearLayoutManager(context)
         dataRecyclerView.layoutManager = layoutManager
-        dataRecyclerView.adapter = DataAdapter(dataList)
+        viewModel.categories.observe(viewLifecycleOwner, Observer {
+            dataRecyclerView.adapter = DataAdapter(it.categories)
+        })
 
         secondButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_secondFragment)
