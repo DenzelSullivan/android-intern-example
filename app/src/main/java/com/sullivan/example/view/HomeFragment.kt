@@ -1,65 +1,49 @@
 package com.sullivan.example.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.sullivan.example.R
-import com.sullivan.example.model.repository.FoodRepository
-import com.sullivan.example.model.service.FoodService
-import com.sullivan.example.model.service.RetrofitBuilder
+import com.sullivan.example.model.data.Category
 import com.sullivan.example.view.adapter.DataAdapter
+import com.sullivan.example.view.adapter.OnItemClickListener
 import com.sullivan.example.viewmodel.FoodViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.runBlocking
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class HomeFragment : Fragment() {
-    private lateinit var layoutManager: RecyclerView.LayoutManager
-    private lateinit var foodRepository: FoodRepository
     private lateinit var viewModel: FoodViewModel
-
-    private var retrofit: RetrofitBuilder = RetrofitBuilder
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        foodRepository = FoodRepository(retrofit.foodService)
-        viewModel = FoodViewModel(foodRepository)
 
-        layoutManager = LinearLayoutManager(context)
+        viewModel = FoodViewModel()
+
+        val layoutManager = LinearLayoutManager(context)
         dataRecyclerView.layoutManager = layoutManager
         viewModel.categories.observe(viewLifecycleOwner, Observer {
-            dataRecyclerView.adapter = DataAdapter(it.categories)
+            dataRecyclerView.adapter = DataAdapter(it.categories, object : OnItemClickListener {
+                override fun onItemClick(data: Category) {
+                    setFragmentResult(
+                        DetailFragment.REQUEST_KEY,
+                        bundleOf(DetailFragment.CATEGORY_KEY to data)
+                    )
+                    findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+                }
+            })
         })
     }
 
@@ -75,11 +59,6 @@ class HomeFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+            HomeFragment()
     }
 }

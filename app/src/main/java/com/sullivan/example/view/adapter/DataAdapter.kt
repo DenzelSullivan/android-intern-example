@@ -12,7 +12,8 @@ import com.sullivan.example.model.data.Category
 import kotlinx.android.synthetic.main.item_data.view.*
 
 class DataAdapter(
-    private val data: List<Category>
+    private val data: List<Category>,
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return DataViewHolder(
@@ -24,20 +25,26 @@ class DataAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as DataViewHolder
-        holder.textView.text = data[position].name
-        holder.loadImage(data[position].imageUrl)
+        holder.bind(data[position], listener)
     }
 
 }
 
-class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val textView: TextView = view.firstTextView
+class DataViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    private val textView: TextView = view.firstTextView
     private val imageView: ImageView = view.imageView
 
-    fun loadImage(url: String){
-        Picasso
-            .get()
-            .load(url)
-            .into(imageView)
+    fun bind(data: Category, listener: OnItemClickListener){
+        textView.text = data.name
+        loadImage(data.imageUrl)
+        view.setOnClickListener { listener.onItemClick(data) }
     }
+
+    private fun loadImage(url: String){
+        Picasso.get().load(url).into(imageView)
+    }
+}
+
+interface OnItemClickListener {
+    fun onItemClick(data: Category)
 }
