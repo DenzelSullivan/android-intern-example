@@ -24,18 +24,12 @@ import kotlinx.coroutines.runBlocking
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var foodRepository: FoodRepository
     private lateinit var viewModel: FoodViewModel
 
     private var retrofit: RetrofitBuilder = RetrofitBuilder
-
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -67,10 +61,6 @@ class HomeFragment : Fragment() {
         viewModel.categories.observe(viewLifecycleOwner, Observer {
             dataRecyclerView.adapter = DataAdapter(it.categories)
         })
-
-        secondButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_secondFragment)
-        }
     }
 
     companion object {

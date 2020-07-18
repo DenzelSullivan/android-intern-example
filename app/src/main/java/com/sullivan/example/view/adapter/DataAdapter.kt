@@ -32,7 +32,7 @@ class DataAdapter(
 
 class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val textView: TextView = view.firstTextView
-    val imageView: ImageView = view.imageView
+    private val imageView: ImageView = view.imageView
 
     fun loadImage(url: String){
         Picasso

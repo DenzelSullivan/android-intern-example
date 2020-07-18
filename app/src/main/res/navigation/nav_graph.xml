@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.sullivan.example.view.SecondFragment"
+        android:name="com.sullivan.example.view.DetailFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
+        tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/action_secondFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
