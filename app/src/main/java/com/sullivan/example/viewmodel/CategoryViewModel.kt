@@ -8,7 +8,7 @@ import com.sullivan.example.model.repository.FoodRepository
 import com.sullivan.example.model.service.RetrofitBuilder
 import kotlinx.coroutines.launch
 
-class FoodViewModel : ViewModel() {
+class CategoryViewModel : ViewModel() {
 
     // TODO: Remove and use DI framework
     private val foodRepository = FoodRepository(RetrofitBuilder.foodService)

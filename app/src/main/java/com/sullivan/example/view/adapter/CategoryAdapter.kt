@@ -11,7 +11,7 @@ import com.sullivan.example.R
 import com.sullivan.example.model.data.Category
 import kotlinx.android.synthetic.main.item_data.view.*
 
-class DataAdapter(
+class CategoryAdapter(
     private val data: List<Category>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
