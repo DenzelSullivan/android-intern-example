@@ -1,11 +1,22 @@
 <resources>
     <string name="app_name">Example</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="category">Category</string>
-    <string name="home">Home</string>
-    <string name="start_app">Start App</string>
-    <string name="submit">Submit</string>
+    <string name="channel_id">channel_id</string>
+
+    <!--  Start Fragment  -->
+    <string name="welcome_message">Welcome to the Android Study Guide</string>
     <string name="please_enter_your_name">Please enter your name</string>
     <string name="name">Name</string>
+
+    <!--  Buttons  -->
+    <string name="change_title">Change Title</string>
+    <string name="show_toast">Show Toast</string>
+    <string name="show_snack">Show SnackBar</string>
+    <string name="send_notification">Send Notification</string>
+    <string name="next">Next</string>
+
+    <!--  Category  -->
+    <string name="category">Category</string>
+    <string name="home">Home</string>
+
 </resources>

@@ -49,19 +49,19 @@ class UserFragmentTest {
     fun enterNameButton_ActionResult() {
         onView(withId(R.id.nameEditText)).perform(typeText(inputName))
         closeSoftKeyboard()
-        onView(withId(R.id.enterNameButton)).perform(click())
+        onView(withId(R.id.toastButton)).perform(click())
 
-        onView(withId(R.id.nameTextView)).check(matches(withText(containsString(inputName))))
+        onView(withId(R.id.enterNameTextView)).check(matches(withText(containsString(inputName))))
         onView(withId(R.id.nameEditText)).check(matches(not(isDisplayed())))
-        onView(withId(R.id.enterNameButton)).check(matches(not(isDisplayed())))
-        onView(withId(R.id.startButton)).check(matches(isDisplayed()))
+        onView(withId(R.id.toastButton)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.nextButton)).check(matches(isDisplayed()))
     }
 
     @Test
     fun startButton_ActionResult() {
         enterNameButton_ActionResult()
 
-        onView(withId(R.id.startButton)).perform(forceClick())
+        onView(withId(R.id.nextButton)).perform(forceClick())
         onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
         assertEquals(R.id.homeFragment, navController.currentDestination?.id)
     }
