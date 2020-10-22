@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Example</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="channel_id">channel_id</string>
 
     <!--  Start Fragment  -->

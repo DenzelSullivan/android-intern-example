@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Exemple</string>
+    <string name="channel_id">channel_id</string>
+
+    <!--  Start Fragment  -->
+    <string name="welcome_message">Bienvenue dans le guide d\'étude Android</string>
+    <string name="please_enter_your_name">S\'il vous plaît entrez votre nom</string>
+    <string name="name">Nom</string>
+
+    <!--  Buttons  -->
+    <string name="change_title">Changer le titre</string>
+    <string name="show_toast">Afficher Toast</string>
+    <string name="show_snack">Afficher SnackBar</string>
+    <string name="send_notification">Envoyer une notification</string>
+    <string name="next">Suivant</string>
+
+    <!--  Category  -->
+    <string name="category">Category</string>
+    <string name="home">Home</string>
+</resources>

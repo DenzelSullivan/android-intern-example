@@ -1,9 +1,12 @@
 package com.sullivan.example.view
 
+import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +18,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.sullivan.example.R
 import com.sullivan.example.sendNotification
 import kotlinx.android.synthetic.main.fragment_start.*
+import java.util.*
+
 
 class UserFragment : Fragment() {
 
@@ -22,6 +27,9 @@ class UserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //Uncomment to set app to french
+        //setAppLocale("fr")
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
@@ -79,5 +87,12 @@ class UserFragment : Fragment() {
         val notificationManager =
             requireActivity().getSystemService(NotificationManager::class.java)
         notificationManager?.createNotificationChannel(notificationChannel)
+    }
+
+    @Suppress("DEPRECATION")
+    private fun setAppLocale(localeCode: String) {
+        val config: Configuration = resources.configuration
+        config.setLocale(Locale(localeCode.toLowerCase(Locale.ROOT)))
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 }
