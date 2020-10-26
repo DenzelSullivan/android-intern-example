@@ -24,45 +24,59 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-class UserFragmentTest {
+class StartFragmentTest {
 
     companion object {
         private const val inputName = "Denzel"
-        private const val toastMessage = "Hello $inputName"
+        private const val message = "Hello $inputName"
     }
 
     private lateinit var navController: TestNavHostController
 
     @Before
     fun setUp() {
-        val scenario = launchFragmentInContainer<UserFragment>()
+        val scenario = launchFragmentInContainer<StartFragment>()
         scenario.onFragment { fragment ->
             navController = TestNavHostController(ApplicationProvider.getApplicationContext())
             navController.setGraph(R.navigation.nav_graph)
-            navController.setCurrentDestination(R.id.userFragment)
+            navController.setCurrentDestination(R.id.startFragment)
 
             Navigation.setViewNavController(fragment.requireView(), navController)
         }
     }
 
     @Test
-    fun enterNameButton_ActionResult() {
+    fun changeTitleButton_ActionResult(){
+        onView(withId(R.id.nameEditText)).perform(typeText(inputName))
+        closeSoftKeyboard()
+        onView(withId(R.id.changeTitleButton)).perform(click())
+
+        onView(withId(R.id.enterNameTextView)).check(matches(withText(message)))
+    }
+
+    @Test
+    fun showToastButton_ActionResult(){
         onView(withId(R.id.nameEditText)).perform(typeText(inputName))
         closeSoftKeyboard()
         onView(withId(R.id.toastButton)).perform(click())
 
-        onView(withId(R.id.enterNameTextView)).check(matches(withText(containsString(inputName))))
-        onView(withId(R.id.nameEditText)).check(matches(not(isDisplayed())))
-        onView(withId(R.id.toastButton)).check(matches(not(isDisplayed())))
-        onView(withId(R.id.nextButton)).check(matches(isDisplayed()))
+        onView(withText(message)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
     }
 
     @Test
-    fun startButton_ActionResult() {
-        enterNameButton_ActionResult()
+    fun showSnackBarButton_ActionResult(){
+        // TODO: Complete Test
+    }
 
-        onView(withId(R.id.nextButton)).perform(forceClick())
-        onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
+    @Test
+    fun sendNotificationButton_ActionResult(){
+        // TODO: Complete Test
+    }
+
+    @Test
+    fun nextButton_ActionResult(){
+        onView(withId(R.id.nextButton)).perform(click())
+
         assertEquals(R.id.homeFragment, navController.currentDestination?.id)
     }
 }

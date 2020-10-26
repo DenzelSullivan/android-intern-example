@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.UserFragment">
+    tools:context=".view.StartFragment">
 
     <TextView
         android:id="@+id/titleTextView"

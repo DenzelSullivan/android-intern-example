@@ -1,12 +1,10 @@
 package com.sullivan.example.view
 
-import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_start.*
 import java.util.*
 
 
-class UserFragment : Fragment() {
+class StartFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +61,7 @@ class UserFragment : Fragment() {
         }
 
         nextButton.setOnClickListener {
-            findNavController().navigate(R.id.action_userFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_startFragment_to_homeFragment)
         }
     }
 

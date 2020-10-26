@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/userFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
-        android:id="@+id/userFragment"
-        android:name="com.sullivan.example.view.UserFragment"
-        android:label="fragment_user"
-        tools:layout="@layout/fragment_start" >
+        android:id="@+id/startFragment"
+        android:name="com.sullivan.example.view.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start">
         <action
-            android:id="@+id/action_userFragment_to_homeFragment"
+            android:id="@+id/action_startFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
@@ -21,10 +21,10 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/secondFragment" />
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
+        android:id="@+id/detailFragment"
         android:name="com.sullivan.example.view.DetailFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_detail" >
