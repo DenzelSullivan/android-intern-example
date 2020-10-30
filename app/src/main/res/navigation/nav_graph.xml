@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_startFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_notificationSchedulerFragment"
+            app:destination="@id/notificationSchedulerFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -31,5 +34,13 @@
         <action
             android:id="@+id/action_detailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationSchedulerFragment"
+        android:name="com.sullivan.example.view.NotificationSchedulerFragment"
+        android:label="NotificationSchedulerFragment" >
+        <action
+            android:id="@+id/action_notificationSchedulerFragment_to_startFragment"
+            app:destination="@id/startFragment" />
     </fragment>
 </navigation>

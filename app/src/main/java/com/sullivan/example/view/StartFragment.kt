@@ -60,6 +60,10 @@ class StartFragment : Fragment() {
             notificationManager.sendNotification("Time to Study!!", requireContext())
         }
 
+        scheduleButton.setOnClickListener {
+            findNavController().navigate(R.id.action_startFragment_to_notificationSchedulerFragment)
+        }
+
         nextButton.setOnClickListener {
             findNavController().navigate(R.id.action_startFragment_to_homeFragment)
         }

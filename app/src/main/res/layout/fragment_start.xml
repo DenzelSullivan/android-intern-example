@@ -72,6 +72,14 @@
         android:text="@string/send_notification" />
 
     <Button
+        android:id="@+id/scheduleButton"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/btn_margin"
+        android:text="Schedule Job" />
+
+    <Button
         android:id="@+id/nextButton"
         android:layout_width="@dimen/btn_width"
         android:layout_height="wrap_content"
