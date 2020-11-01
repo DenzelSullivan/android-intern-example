@@ -81,6 +81,7 @@ class StartFragmentTest {
     }
 }
 
+@Suppress("DEPRECATION")
 class ToastMatcher : TypeSafeMatcher<Root>() {
     override fun describeTo(description: Description?) {
         description?.appendText("is toast")
