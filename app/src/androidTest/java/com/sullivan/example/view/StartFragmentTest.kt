@@ -60,7 +60,7 @@ class StartFragmentTest {
         closeSoftKeyboard()
         onView(withId(R.id.toastButton)).perform(click())
 
-        //onView(withText(message)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
+        onView(withText(message)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
     }
 
     @Test
