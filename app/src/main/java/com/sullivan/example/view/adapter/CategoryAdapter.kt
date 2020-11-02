@@ -27,7 +27,6 @@ class CategoryAdapter(
         holder as DataViewHolder
         holder.bind(data[position], listener)
     }
-
 }
 
 class DataViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
