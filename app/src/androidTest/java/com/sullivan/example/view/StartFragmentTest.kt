@@ -49,7 +49,7 @@ class StartFragmentTest {
     fun changeTitleButton_ActionResult(){
         onView(withId(R.id.nameEditText)).perform(typeText(inputName))
         closeSoftKeyboard()
-        onView(withId(R.id.changeTitleButton)).perform(click())
+        onView(withId(R.id.changeTitleButton)).perform(forceClick())
 
         onView(withId(R.id.enterNameTextView)).check(matches(withText(message)))
     }
@@ -58,7 +58,7 @@ class StartFragmentTest {
     fun showToastButton_ActionResult(){
         onView(withId(R.id.nameEditText)).perform(typeText(inputName))
         closeSoftKeyboard()
-        onView(withId(R.id.toastButton)).perform(click())
+        onView(withId(R.id.toastButton)).perform(forceClick())
 
         onView(withText(message)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
     }
