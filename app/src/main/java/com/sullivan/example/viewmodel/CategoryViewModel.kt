@@ -7,7 +7,6 @@ import com.sullivan.example.model.data.Categories
 import com.sullivan.example.model.repository.FoodRepository
 import com.sullivan.example.model.service.RetrofitBuilder
 import kotlinx.coroutines.launch
-
 class CategoryViewModel : ViewModel() {
 
     // TODO: Remove and use DI framework
@@ -20,4 +19,9 @@ class CategoryViewModel : ViewModel() {
             categories.postValue(foodRepository.getCategories())
         }
     }
+
+    fun getLastIndex(): Int {
+        return categories.value?.categories?.lastIndex ?: 0
+    }
 }
+

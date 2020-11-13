@@ -44,5 +44,14 @@ class HomeFragment : Fragment() {
                 }
             })
         })
+
+        listHeader.apply {
+            setLeftActionOnClickListener {
+                dataRecyclerView.scrollToPosition(viewModel.getLastIndex())
+            }
+            setRightOnClickListener {
+                dataRecyclerView.scrollToPosition(0)
+            }
+        }
     }
 }
