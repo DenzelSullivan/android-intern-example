@@ -47,10 +47,10 @@ class HomeFragment : Fragment() {
 
         listHeader.apply {
             setLeftActionOnClickListener {
-                dataRecyclerView.scrollToPosition(viewModel.getLastIndex())
+                dataRecyclerView.smoothScrollToPosition(viewModel.getLastIndex())
             }
             setRightOnClickListener {
-                dataRecyclerView.scrollToPosition(0)
+                dataRecyclerView.smoothScrollToPosition(0)
             }
         }
     }
