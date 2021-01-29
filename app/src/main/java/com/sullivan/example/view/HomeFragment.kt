@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sullivan.example.R
@@ -14,8 +15,10 @@ import com.sullivan.example.model.data.Category
 import com.sullivan.example.view.adapter.CategoryAdapter
 import com.sullivan.example.view.adapter.OnItemClickListener
 import com.sullivan.example.viewmodel.CategoryViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var viewModel: CategoryViewModel
 
@@ -29,7 +32,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = CategoryViewModel()
+        viewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
 
         val layoutManager = LinearLayoutManager(context)
         dataRecyclerView.layoutManager = layoutManager
