@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sullivan.example.model.data.Categories
 import com.sullivan.example.model.repository.FoodRepository
-import com.sullivan.example.model.service.RetrofitBuilder
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-class CategoryViewModel : ViewModel() {
+import javax.inject.Inject
 
-    // TODO: Remove and use DI framework
-    private val foodRepository = FoodRepository(RetrofitBuilder.foodService)
+@HiltViewModel
+class CategoryViewModel @Inject constructor(
+    private val foodRepository: FoodRepository
+) : ViewModel() {
 
     val categories: MutableLiveData<Categories> = MutableLiveData()
 
